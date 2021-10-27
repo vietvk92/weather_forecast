@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="WeatherDailyResponseEntity" representedClassName="WeatherDailyResponseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dt" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="humidity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pressure" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tempMax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="tempMin" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weatherDescription" optional="YES" attributeType="String"/>
+        <attribute name="weatherIcon" optional="YES" attributeType="String"/>
+        <attribute name="weatherId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="weatherMain" optional="YES" attributeType="String"/>
+        <relationship name="weathersResponse" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherResponseEntity" inverseName="weathers" inverseEntity="WeatherResponseEntity"/>
+    </entity>
+    <entity name="WeatherRequestEntity" representedClassName="WeatherRequestEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="cnt" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="q" optional="YES" attributeType="String"/>
+        <attribute name="units" optional="YES" attributeType="String"/>
+        <relationship name="response" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherResponseEntity" inverseName="request" inverseEntity="WeatherResponseEntity"/>
+    </entity>
+    <entity name="WeatherResponseEntity" representedClassName="WeatherResponseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="cityId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cityName" optional="YES" attributeType="String"/>
+        <attribute name="cnt" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="request" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherRequestEntity" inverseName="response" inverseEntity="WeatherRequestEntity"/>
+        <relationship name="weathers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WeatherDailyResponseEntity" inverseName="weathersResponse" inverseEntity="WeatherDailyResponseEntity"/>
+    </entity>
+    <elements>
+        <element name="WeatherRequestEntity" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="WeatherResponseEntity" positionX="-54" positionY="18" width="128" height="104"/>
+        <element name="WeatherDailyResponseEntity" positionX="-27" positionY="72" width="128" height="179"/>
+    </elements>
+</model>
